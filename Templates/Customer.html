@@ -1,0 +1,49 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    <title>HeyPay</title>
+{% endblock title %}
+
+{% block content %}
+<style>
+    body{
+      background-image: url('{% static "images/piggy.jpg"%}');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 70%;
+      background-attachment: fixed;
+  }
+  table{
+      opacity: 0.8;
+  }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Lobster&display=swap');
+        </style>
+    <h2 align="center" class="pb-3 pt-3" style="font-family: 'Courgette', cursive; background-color: aqua;">Customers List</h2>
+    <div class="container mt-3">
+        <hr>
+        <table class="table table-bordered table-hover bg-white">
+            <thead class="thead-dark">
+                <tr align="center">
+                    <th>Account No</th>
+                    <th>Account Holder</th>
+                    <th>Email</th>
+                    <th>Account Balance</th>
+                    <th>Transfer</th>
+                </tr>
+            </thead>
+            <tbody style="font-weight: 600;">
+                {% for s in customers %}
+                <tr align="center">
+                    <td>{{s.Acc_No}}</td>
+                    <td>{{s.Account_Holder}}</td>
+                    <td>{{s.Email_Id}}</td>
+                    <td>{{s.Current_Balance}}</td>
+                    <td><a href="{% url 'Trans' s.Acc_No %}" class="btn btn-primary">Transfer</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
